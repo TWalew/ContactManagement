@@ -1,7 +1,7 @@
 # ContactManagement
  Contact management system task for Invelop
  
- Hey, guys wellcome to my application. =)
+ Hey, guys wellcome to my application. =]
 
  To run the app you'll need to do some initial setup first.
 
@@ -24,3 +24,7 @@
 insert into dbo.Contacts values ('Toni', 'Valev', '1996-02-24','Stara Zagora,
   Avgusta Trajana 55', '0876876636', 'DE89370400440532013000')
 ```
+
+ 2. Now you can open Visual Studio and run the application. That's right everything else is handled by the code so that     means that the BE assembles installs and builds the FE and then runs it without anything else needed.
+ 
+ 3. Enjoy =]
