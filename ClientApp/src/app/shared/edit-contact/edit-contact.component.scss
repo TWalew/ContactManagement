@@ -1,0 +1,45 @@
+.modal-header {
+  background-color: #00bcd4;
+
+  .modal-title {
+    color: white;
+  }
+}
+
+
+.contact-form {
+
+  .full-width {
+    width: 100%;
+  }
+
+  .error-msg {
+    color: red;
+    font-size: 75%;
+    margin: 0 0 0 1px;
+  }
+
+  .ui-calendar {
+    width: 100%;
+
+    .ui-inputtext {
+      width: 92.9%;
+    }
+  }
+}
+
+
+.prime-footer {
+  border-top: 1px solid #c8c8c8
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

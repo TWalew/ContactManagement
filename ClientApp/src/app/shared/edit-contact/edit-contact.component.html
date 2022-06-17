@@ -1,0 +1,203 @@
+<form class="contact-form mt-3" [formGroup]="contactForm">
+  <div class="mb-3">
+    <span class="ui-float-label">
+      <input
+        id="FirstName"
+        class="full-width"
+        type="text"
+        size="30"
+        formControlName="firstName"
+        pInputText
+      />
+      <label for="FirstName">First Name</label>
+    </span>
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('firstName').touched &&
+        contactForm.get('firstName').hasError('maxlength') &&
+        !contactForm.get('firstName').hasError('required')
+      "
+    >
+      Maximum length for this field is 500 characters!
+    </p>
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('firstName').touched &&
+        contactForm.get('firstName').hasError('required')
+      "
+    >
+      First Name is <strong>required</strong>
+    </p>
+  </div>
+
+  <div class="my-3">
+    <span class="ui-float-label">
+      <input
+        id="Surname"
+        class="full-width"
+        type="text"
+        size="30"
+        formControlName="surname"
+        pInputText
+      />
+      <label for="Surname">Surname</label>
+    </span>
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('surname').touched &&
+        contactForm.get('surname').hasError('maxlength') &&
+        !contactForm.get('surname').hasError('required')
+      "
+    >
+      Maximum length for this field is 500 characters!
+    </p>
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('surname').touched &&
+        contactForm.get('surname').hasError('required')
+      "
+    >
+      Surname is <strong>required</strong>
+    </p>
+  </div>
+  <div class="my-3">
+    <span class="ui-float-label">
+      <p-calendar
+        appendTo="body"
+        id="DateOfBirth"
+        formControlName="dateOfBirth"
+        placehold
+        [style]="{ width: '100%' }"
+        [inputStyle]="{ width: '93.9%' }"
+        [showIcon]="true"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        [yearRange]="startYear + ':' + endYear"
+      ></p-calendar>
+      <label for="DateOfBirth">Date of Birth</label>
+    </span>
+
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('dateOfBirth').touched &&
+        contactForm.get('dateOfBirth').hasError('required')
+      "
+    >
+      Date of Birth is <strong>required</strong>
+    </p>
+  </div>
+
+  <div class="my-3">
+    <span class="ui-float-label">
+      <input
+        id="Address"
+        class="full-width"
+        type="text"
+        size="30"
+        formControlName="address"
+        pInputText
+      />
+      <label for="Address">Address</label>
+    </span>
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('address').touched &&
+        contactForm.get('address').hasError('maxlength') &&
+        !contactForm.get('address').hasError('required')
+      "
+    >
+      Maximum length for this field is 500 characters!
+    </p>
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('address').touched &&
+        contactForm.get('address').hasError('required')
+      "
+    >
+      Address is <strong>required</strong>
+    </p>
+  </div>
+
+  <div class="my-3">
+    <span class="ui-float-label">
+      <!-- <input
+        id="PhoneNumber"
+        class="full-width"
+        type="number"
+        leadingZero="keep"
+        [max]="999999999999999"
+        size="15"
+        formControlName="phoneNumber"
+        pInputNumber
+      /> -->
+      <p-inputMask
+        mask="(999) 999-9999"
+        class="full-width"
+        formControlName="phoneNumber"
+        [style]="{ width: '100%' }"
+      ></p-inputMask>
+      <label for="PhoneNumber">Phone Number</label>
+    </span>
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('phoneNumber').touched &&
+        contactForm.get('phoneNumber').hasError('required')
+      "
+    >
+      Phone Number is <strong>required</strong>
+    </p>
+  </div>
+
+  <div class="my-3">
+    <span class="ui-float-label">
+      <input
+        id="IBAN"
+        class="full-width"
+        type="text"
+        size="30"
+        formControlName="IBAN"
+        pInputText
+      />
+      <label for="IBAN">IBAN</label>
+    </span>
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('IBAN').touched &&
+        contactForm.get('IBAN').hasError('maxlength') &&
+        !contactForm.get('IBAN').hasError('required')
+      "
+    >
+      Maximum length for this field is 500 characters!
+    </p>
+    <p
+      class="error-msg"
+      *ngIf="
+        contactForm.get('IBAN').touched &&
+        contactForm.get('IBAN').hasError('required')
+      "
+    >
+      IBAN is <strong>required</strong>
+    </p>
+  </div>
+</form>
+<div class="prime-footer d-flex justify-content-between pt-3 pb-2">
+  <p-button
+    [label]="isEditMode ? 'Edit' : 'Create'"
+    class="btn-outline-light-blue float-left"
+    (onClick)="onSubmit()"
+  ></p-button>
+  <p-button
+    label="Close"
+    styleClass="ui-button-danger"
+    (onClick)="close()"
+  ></p-button>
+</div>

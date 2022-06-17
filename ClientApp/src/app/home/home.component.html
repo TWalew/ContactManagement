@@ -1,0 +1,51 @@
+<h1>Hello, Invelop!</h1>
+<p>Welcome to my single-page application, built with:</p>
+<ul>
+  <li>
+    <a href="https://get.asp.net/">ASP.NET Core</a> and
+    <a href="https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx">C#</a> for
+    cross-platform server-side code
+  </li>
+  <li>
+    <a href="https://angular.io/">Angular</a> and
+    <a href="http://www.typescriptlang.org/">TypeScript</a> for client-side code
+  </li>
+  <li>
+    <a href="http://getbootstrap.com/">Bootstrap</a> for layout and styling
+  </li>
+  <li>
+    <a href="https://www.primefaces.org/primeng-v8-lts/#/">PrimeNG</a> for UI
+  </li>
+</ul>
+<p>
+  To get started you'll have to run this query inside SQL Server Management
+  Studio!
+  <em>I have used SQL Server for database!</em>
+</p>
+<p>First run this query to create the database:</p>
+<code>Create Database ContactDB </code>
+<hr />
+<p>After that run a query inside the database like so:</p>
+<code
+  >Create table dbo.Contacts( ContactID int identity(1,1) NOT NULL, FirstName
+  varchar(500), Surname varchar(500), DateOfBirth date, PhoneNumber varchar(15),
+  IBAN varchar(35), PRIMARY KEY (ContactId) )
+</code>
+<hr />
+<p>
+  After the database is created you can simply run this query to add the first
+  contact.
+  <em
+    >You can also skip that and add the first contact trough the front-end!</em
+  >
+</p>
+<code
+  >insert into dbo.Contacts values ('Toni', 'Valev', '1996-02-24','Stara Zagora,
+  Avgusta Trajana 55', '0876876636', 'DE89370400440532013000')</code
+>
+<hr />
+<h3>
+  After this initial setup you can simply enjoy the app, by running it directly
+  from Visual Studio. It's configured to build and start the front-end
+  immediately.
+</h3>

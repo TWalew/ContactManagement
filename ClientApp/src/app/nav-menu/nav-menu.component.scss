@@ -1,0 +1,47 @@
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 1100;
+
+  nav {
+    background-color: rgba($color: #00bcd4, $alpha: 0.8) !important;
+
+    a {
+      color: white;
+
+      .navbar-brand {
+        white-space: normal;
+        text-align: center;
+        word-break: break-all;
+      }
+    }
+
+    .navbar-nav {
+      .nav-item {
+        &.link-active {
+          .nav-link {
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+        }
+
+        .nav-link {
+          color: white !important;
+        }
+      }
+    }
+  }
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
