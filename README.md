@@ -19,3 +19,8 @@
   varchar(500), Surname varchar(500), DateOfBirth date, PhoneNumber varchar(15),
   IBAN varchar(35), PRIMARY KEY (ContactId) )
 ```
+  1.3 Finally you need to run a query to add the first contact. This step is optional you can also add it trough the         FE.
+ ```diff
+insert into dbo.Contacts values ('Toni', 'Valev', '1996-02-24','Stara Zagora,
+  Avgusta Trajana 55', '0876876636', 'DE89370400440532013000')
+```
