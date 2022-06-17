@@ -12,3 +12,9 @@
  ```diff
  Create Database ContactDB
 ```
+ 1.2 Open the newly created database and run the second query to create the table:
+ ```diff
+ Create table dbo.Contacts( ContactID int identity(1,1) NOT NULL, FirstName
+  varchar(500), Surname varchar(500), DateOfBirth date, PhoneNumber varchar(15),
+  IBAN varchar(35), PRIMARY KEY (ContactId) )
+```
