@@ -99,7 +99,6 @@ export class EditContentComponent implements OnInit {
   close() {
     this.errors$.subscribe((err: any) => {
       this.error = err;
-      console.log(err);
       if (err) {
         this.msgs = [];
         this.msgs.push({
