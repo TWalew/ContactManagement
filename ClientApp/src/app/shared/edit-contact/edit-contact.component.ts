@@ -13,7 +13,6 @@ import { addContact } from "src/app/state/contacts/actions";
 import { updateContact } from "./../../state/contacts/actions/contacts.actions";
 import { AppState } from "./../../state/app.state.";
 import { selectAllErrors } from "src/app/state/contacts/selectors/contacts.selector";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: "edit-modal-content",
@@ -22,7 +21,6 @@ import { map } from "rxjs/operators";
 })
 export class EditContentComponent implements OnInit {
   public errors$ = this.store.select(selectAllErrors);
-  error: any;
   msgs: Message[] = [];
   contactForm: FormGroup = new FormGroup({
     firstName: new FormControl("", [
@@ -98,7 +96,6 @@ export class EditContentComponent implements OnInit {
 
   close() {
     this.errors$.subscribe((err: any) => {
-      this.error = err;
       if (err) {
         this.msgs = [];
         this.msgs.push({
