@@ -25,6 +25,8 @@ import { CalendarModule } from "primeng/calendar";
 import { DynamicDialogModule } from "primeng/dynamicdialog";
 import { DialogService } from "primeng/api";
 import { InputMaskModule } from "primeng/inputmask";
+import { ToastModule } from "primeng/toast";
+import { MessageService } from "primeng/api";
 
 @NgModule({
   declarations: [
@@ -51,8 +53,9 @@ import { InputMaskModule } from "primeng/inputmask";
     InputMaskModule,
     CalendarModule,
     DynamicDialogModule,
+    ToastModule,
   ],
-  providers: [DialogService],
+  providers: [DialogService, MessageService],
   bootstrap: [AppComponent],
   entryComponents: [EditContentComponent],
 })

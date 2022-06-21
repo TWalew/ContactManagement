@@ -2,11 +2,12 @@ import { AppState } from "../../app.state.";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { from, of } from "rxjs";
-import { map, mergeMap, catchError, switchMap } from "rxjs/operators";
+import { map, catchError, switchMap } from "rxjs/operators";
 import { ContactsService } from "../../../services/contacts.service";
 import * as fromActions from "../actions/index";
 import { Store } from "@ngrx/store";
 import { Contact } from "src/app/contacts/contact.model";
+import { MessageService } from "primeng/api";
 
 @Injectable()
 export class ContactsEffects {
@@ -29,14 +30,26 @@ export class ContactsEffects {
   removeContact$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.removeContact),
-      mergeMap((payload) =>
+      switchMap((payload) =>
         this.contactsService.removeContact(payload.contactId).pipe(
-          map((contact: Contact) =>
-            fromActions.removeContactSuccess({
+          map((contact: Contact) => {
+            this.messageService.add({
+              severity: "success",
+              summary: "Delete Contact",
+              detail: "Contact successfully deleted.",
+            });
+            return fromActions.removeContactSuccess({
               contactId: contact.ContactId,
-            })
-          ),
-          catchError((error) => of(fromActions.removeContactFailure({ error })))
+            });
+          }),
+          catchError((error) => {
+            this.messageService.add({
+              severity: "error",
+              summary: "Delete Contact",
+              detail: "Contact deleting failed.",
+            });
+            return of(fromActions.removeContactFailure({ error }));
+          })
         )
       )
     )
@@ -45,15 +58,26 @@ export class ContactsEffects {
   addContact$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.addContact),
-      mergeMap((payload) => {
-        console.log(payload);
+      switchMap((payload) => {
+        this.messageService.add({
+          severity: "success",
+          summary: "Create Contact",
+          detail: "Contact successfully created.",
+        });
         return this.contactsService.addContact(payload.contact).pipe(
           map((contact: Contact) =>
             fromActions.addContactSuccess({
               contact: contact,
             })
           ),
-          catchError((error) => of(fromActions.addContactFailure({ error })))
+          catchError((error) => {
+            this.messageService.add({
+              severity: "error",
+              summary: "Create Contact",
+              detail: "Contact creating failed.",
+            });
+            return of(fromActions.addContactFailure({ error }));
+          })
         );
       })
     )
@@ -62,14 +86,26 @@ export class ContactsEffects {
   editContact$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.updateContact),
-      mergeMap((payload) =>
+      switchMap((payload) =>
         this.contactsService.updateContact(payload.contactChanges).pipe(
-          map((contact: Contact) =>
-            fromActions.updateContactSuccess({
+          map((contact: Contact) => {
+            this.messageService.add({
+              severity: "success",
+              summary: "Edit Contact",
+              detail: "Contact successfully edited.",
+            });
+            return fromActions.updateContactSuccess({
               contactChanges: contact,
-            })
-          ),
-          catchError((error) => of(fromActions.updateContactFailure({ error })))
+            });
+          }),
+          catchError((error) => {
+            this.messageService.add({
+              severity: "error",
+              summary: "Edit Contact",
+              detail: "Contact editing failed.",
+            });
+            return of(fromActions.updateContactFailure({ error }));
+          })
         )
       )
     )
@@ -78,6 +114,7 @@ export class ContactsEffects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
-    private contactsService: ContactsService
+    private contactsService: ContactsService,
+    private messageService: MessageService
   ) {}
 }
