@@ -58,18 +58,18 @@ export class ContactsEffects {
   addContact$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.addContact),
-      switchMap((payload) => {
-        this.messageService.add({
-          severity: "success",
-          summary: "Create Contact",
-          detail: "Contact successfully created.",
-        });
-        return this.contactsService.addContact(payload.contact).pipe(
-          map((contact: Contact) =>
-            fromActions.addContactSuccess({
+      switchMap((payload) =>
+        this.contactsService.addContact(payload.contact).pipe(
+          map((contact: Contact) => {
+            this.messageService.add({
+              severity: "success",
+              summary: "Create Contact",
+              detail: "Contact successfully created.",
+            });
+            return fromActions.addContactSuccess({
               contact: contact,
-            })
-          ),
+            });
+          }),
           catchError((error) => {
             this.messageService.add({
               severity: "error",
@@ -78,8 +78,8 @@ export class ContactsEffects {
             });
             return of(fromActions.addContactFailure({ error }));
           })
-        );
-      })
+        )
+      )
     )
   );
 

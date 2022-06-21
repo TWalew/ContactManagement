@@ -1,3 +1,4 @@
+<p-messages [(value)]="msgs"></p-messages>
 <form class="contact-form mt-3" [formGroup]="contactForm">
   <div class="mb-3">
     <span class="ui-float-label">
@@ -127,16 +128,6 @@
 
   <div class="my-3">
     <span class="ui-float-label">
-      <!-- <input
-        id="PhoneNumber"
-        class="full-width"
-        type="number"
-        leadingZero="keep"
-        [max]="999999999999999"
-        size="15"
-        formControlName="phoneNumber"
-        pInputNumber
-      /> -->
       <p-inputMask
         mask="(999) 999-9999"
         class="full-width"
@@ -176,7 +167,7 @@
         !contactForm.get('IBAN').hasError('required')
       "
     >
-      Maximum length for this field is 500 characters!
+      Maximum length for this field is 35 characters!
     </p>
     <p
       class="error-msg"

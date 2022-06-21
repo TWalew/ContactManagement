@@ -1,13 +1,19 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng-lts/api";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+  Message,
+} from "primeng-lts/api";
 import * as moment from "moment";
 
 import { Contact } from "src/app/contacts/contact.model";
 import { addContact } from "src/app/state/contacts/actions";
 import { updateContact } from "./../../state/contacts/actions/contacts.actions";
 import { AppState } from "./../../state/app.state.";
+import { selectAllErrors } from "src/app/state/contacts/selectors/contacts.selector";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "edit-modal-content",
@@ -15,6 +21,9 @@ import { AppState } from "./../../state/app.state.";
   styleUrls: ["./edit-contact.component.scss"],
 })
 export class EditContentComponent implements OnInit {
+  public errors$ = this.store.select(selectAllErrors);
+  error: any;
+  msgs: Message[] = [];
   contactForm: FormGroup = new FormGroup({
     firstName: new FormControl("", [
       Validators.required,
@@ -81,11 +90,27 @@ export class EditContentComponent implements OnInit {
     } else {
       this.store.dispatch(addContact({ contact: newContact }));
     }
-    this.close();
+
+    setTimeout(() => {
+      this.close();
+    }, 100);
   }
 
-  close(): void {
-    this.ref.close();
+  close() {
+    this.errors$.subscribe((err: any) => {
+      this.error = err;
+      console.log(err);
+      if (err) {
+        this.msgs = [];
+        this.msgs.push({
+          severity: "error",
+          summary: err.error.title,
+          detail: err.error.errors[Object.keys(err.error.errors)[0]][0],
+        });
+      } else {
+        this.ref.close();
+      }
+    });
   }
 
   validateInput() {

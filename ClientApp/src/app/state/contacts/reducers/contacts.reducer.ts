@@ -98,7 +98,7 @@ export const contactsReducer = createReducer(
     const newArr = [...state.contacts];
     newArr[index] = contactChanges;
 
-    return { ...state, contacts: [...newArr] };
+    return { ...state, contacts: [...newArr], error: null, status: "success" };
   }),
 
   on(fromActions.updateContactFailure, (state, { error }) => ({
